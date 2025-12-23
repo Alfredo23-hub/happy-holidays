@@ -52,7 +52,7 @@ function App() {
       const optCopy = { ...confettiOptions };
       optCopy.colors.push(generaColoreEsadecimale(), generaColoreEsadecimale());
       confetti("tsparticles", optCopy);
-    }, 1500);
+    }, 1000);
 
     return () => {
       clearInterval(timeout);
