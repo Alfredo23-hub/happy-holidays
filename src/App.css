@@ -1,7 +1,6 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -10,7 +9,7 @@
 }
 
 /* Sfondo e stile generale */
-body {
+html, body {
   background-color: #0a1d37; /* Un blu scuro simile alla notte invernale */
   color: white; /* Testo chiaro per contrasto */
   font-family: 'Georgia', serif; /* Un font elegante, classico */
