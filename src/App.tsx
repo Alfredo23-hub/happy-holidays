@@ -1,19 +1,18 @@
-import { useEffect } from 'react'
-import './App.css'
+import { useEffect, useState } from 'react';
+import './App.css';
 import { confetti } from "tsparticles-confetti";
 
 const generaColoreEsadecimale = (): string => {
-    const lettere = '0123456789ABCDEF';
-    let colore = '#';
-    for (let i = 0; i < 6; i++) {
-      colore += lettere[Math.floor(Math.random() * 16)];
-    }
-    return colore;
+  const lettere = '0123456789ABCDEF';
+  let colore = '#';
+  for (let i = 0; i < 6; i++) {
+    colore += lettere[Math.floor(Math.random() * 16)];
   }
+  return colore;
+}
 
 function App() {
-
-  const confettiOptions = {
+  const [confettiOptions] = useState({
     angle: 90,
     count: 500,
     position: {
@@ -27,39 +26,47 @@ function App() {
     drift: 0,
     ticks: 200,
     colors: ["#ffffff"],
-    shapes: ["square", "circle", "star", "heart", "spades", "dimonds"],
+    shapes: ["square", "circle", "star", "heart", "spades", "diamonds"],
     scalar: 1,
     zIndex: 100,
     disableForReducedMotion: true
-  };
+  });
 
-  const confettiClickOptions = { ...confettiOptions }
+  const [confettiClickOptions, setConfettiClickOptions] = useState(confettiOptions);
 
   const handleFunction = (event: MouseEvent) => {
+    const opt = { ...confettiClickOptions };
     const xScaled = (event.clientX / window.innerWidth) * 100;
     const yScaled = (event.clientY / window.innerHeight) * 100;
-    confettiClickOptions.position = { x: xScaled, y: yScaled };
-    confettiClickOptions.colors.push(generaColoreEsadecimale());
-    (async () => {
-      await confetti("tsparticles", confettiClickOptions);
-    })();
+    opt.position = { x: xScaled, y: yScaled };
+    opt.colors.push(generaColoreEsadecimale());
+    setConfettiClickOptions(opt);
+    confetti("tsparticles", opt);
   };
 
   useEffect(() => {
-    document.body.onclick = (event) => handleFunction(event);
-    setInterval(() => (async () => {
-      confettiOptions.colors.push(generaColoreEsadecimale(), generaColoreEsadecimale());
-      await confetti("tsparticles", confettiOptions);
-    })(), 2000);
-  }, []);
+    const handleClick = (event: MouseEvent) => handleFunction(event);
+    document.body.addEventListener("click", handleClick);
 
+    const timeout = setInterval(() => {
+      const optCopy = { ...confettiOptions };
+      optCopy.colors.push(generaColoreEsadecimale(), generaColoreEsadecimale());
+      confetti("tsparticles", optCopy);
+    }, 1500);
+
+    return () => {
+      clearInterval(timeout);
+      document.body.removeEventListener("click", handleClick);
+    };
+  }, [confettiOptions]);
   
   return (
     <div className="App">
-      <h1>Happy Holidays Frodo</h1>
-      <h2>Some of magics will happen!</h2>
+      <div className="background-text">Frodo</div>
+      <h1>Happy Holidays Gianni!</h1>
+      <h2>!Bro, something magical will happen!</h2>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

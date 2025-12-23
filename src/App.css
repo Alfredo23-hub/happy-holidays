@@ -8,3 +8,166 @@
 .App {
   user-select: none;
 }
+
+/* Sfondo e stile generale */
+body {
+  background-color: #0a1d37; /* Un blu scuro simile alla notte invernale */
+  color: white; /* Testo chiaro per contrasto */
+  font-family: 'Georgia', serif; /* Un font elegante, classico */
+  text-align: center; /* Allinea il testo al centro della pagina */
+  /* padding: 20px; */
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden; /* Impedisce lo scroll */
+  position: relative;
+}
+
+/* Testo principale (titolo) */
+h1 {
+  font-size: 4rem;
+  font-family: 'Cursive', sans-serif; /* Un font più stiloso e festivo */
+  color: #e74c3c; /* Rosso natalizio */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), 0 0 25px rgba(255, 0, 0, 0.8); /* Ombra per un effetto luminoso */
+  letter-spacing: 5px;
+  animation: sparkle 1s infinite alternate; /* Aggiungi un'animazione di scintillio */
+}
+
+/* Sottotitolo o testo secondario */
+h2 {
+  font-size: 2rem;
+  font-family: 'Arial', sans-serif;
+  color: #f39c12; /* Oro per un tocco festivo */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+/* Animazione scintillante per il testo */
+@keyframes sparkle {
+  0% {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 0, 0, 0.8);
+  }
+  100% {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), 0 0 40px rgba(255, 215, 0, 1);
+  }
+}
+
+/* Aggiungere effetti ai link */
+a {
+  color: #1abc9c; /* Verde menta */
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #e74c3c; /* Cambia colore al passaggio del mouse */
+  text-decoration: underline;
+}
+
+/* Aggiungi un effetto di neve che cade (opzionale) */
+@keyframes snow-fall {
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.snowflakes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.snowflakes div {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: snow-fall 10s linear infinite;
+}
+
+.snowflakes div:nth-child(odd) {
+  width: 5px;
+  height: 5px;
+  left: 10%;
+  animation-duration: 12s;
+}
+
+.snowflakes div:nth-child(even) {
+  width: 8px;
+  height: 8px;
+  left: 60%;
+  animation-duration: 15s;
+}
+
+/* Dettagli di decorazione natalizia */
+h1, h2 {
+  padding: 20px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #c0392b, #f39c12); /* Sfondo gradiente natalizio */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Aggiungi ombre per un effetto più profondo */
+}
+
+/* Effetto di cuoricini per il Natale */
+h1:before {
+  content: '❤️';
+  font-size: 3rem;
+  animation: heartbeat 1s infinite;
+  margin-right: 10px;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Aggiungere una cornice natalizia */
+.container {
+  border: 10px solid #27ae60; /* Verde con bordi natalizi */
+  border-radius: 15px;
+  padding: 50px;
+  background-color: #2c3e50;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+.background-text {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Cursive', sans-serif; /* Font festivo */
+  font-size: 10vw; /* La dimensione cambia in base alla larghezza della finestra */
+  font-weight: bold;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.1); /* Colore chiaro con opacità per non sovrapporsi al contenuto */
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3); /* Ombra per far risaltare il testo */
+  letter-spacing: 10px;
+  z-index: 0; /* Posiziona il testo dietro il contenuto principale */
+  white-space: nowrap; /* Impedisce che il testo vada a capo */
+  animation: slideBackground 20s linear infinite; /* Animazione per scorrere il testo */
+}
+
+/* Animazione del testo di sfondo */
+@keyframes slideBackground {
+  0% {
+    transform: translate(-50%, -50%) translateX(-100%);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateX(100%);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateX(-100%);
+  }
+}
