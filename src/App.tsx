@@ -55,12 +55,10 @@ function App() {
 
   
   return (
-    <>
-      <div className="App">
-        <h1>Happy Holidays Frodo</h1>
-        <h2>Some of magics will happen!</h2>
-      </div>
-    </>
+    <div className="App">
+      <h1>Happy Holidays Frodo</h1>
+      <h2>Some of magics will happen!</h2>
+    </div>
   )
 }
 
